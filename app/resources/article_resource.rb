@@ -22,6 +22,14 @@ class ArticleResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :fan_readers, resource: UserResource do
+    assign_each do |article, users|
+      users.select do |u|
+        u.id.in?(article.fan_readers.map(&:id))
+      end
+    end
+  end
+
   has_many :readers, resource: UserResource do
     assign_each do |article, users|
       users.select do |u|
@@ -34,6 +42,12 @@ class ArticleResource < ApplicationResource
   filter :sender_id, :integer do
     eq do |scope, value|
       scope.eager_load(:readers).where(:follow_requests => {:sender_id => value})
+    end
+  end
+
+  filter :recipient_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:fan_readers).where(:follow_requests => {:recipient_id => value})
     end
   end
 end

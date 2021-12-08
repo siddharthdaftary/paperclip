@@ -27,6 +27,14 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :liked_articles, resource: ArticleResource do
+    assign_each do |user, articles|
+      articles.select do |a|
+        a.id.in?(user.liked_articles.map(&:id))
+      end
+    end
+  end
+
   has_many :reading_activity, resource: ArticleResource do
     assign_each do |user, articles|
       articles.select do |a|

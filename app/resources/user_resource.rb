@@ -27,6 +27,22 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :followers, resource: UserResource do
+    assign_each do |user, users|
+      users.select do |u|
+        u.id.in?(user.followers.map(&:id))
+      end
+    end
+  end
+
+  has_many :following, resource: UserResource do
+    assign_each do |user, users|
+      users.select do |u|
+        u.id.in?(user.following.map(&:id))
+      end
+    end
+  end
+
   many_to_many :favorite_articles,
                resource: ArticleResource
 
@@ -50,6 +66,18 @@ class UserResource < ApplicationResource
   filter :article_id, :integer do
     eq do |scope, value|
       scope.eager_load(:reading_activity).where(:favorites => {:article_id => value})
+    end
+  end
+
+  filter :sender_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:followers).where(:follow_requests => {:sender_id => value})
+    end
+  end
+
+  filter :recipient_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:following).where(:follow_requests => {:recipient_id => value})
     end
   end
 end

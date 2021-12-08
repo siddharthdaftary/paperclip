@@ -27,7 +27,7 @@
     <%= f.label :uploader_id %>
 
     <!-- Input for uploader_id start -->
-    <%= f.text_field :uploader_id, class: "form-control" %>
+    <%= f.collection_select :uploader_id, User.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for uploader_id end -->
   </div>
   <!-- Label and input for uploader_id end -->

@@ -68,7 +68,7 @@
 
     <%= f.label :uploader_id %>
     <!-- Input for uploader_id start -->
-    <%= f.number_field :uploader_id, class: uploader_class, placeholder: "Enter uploader" %>
+    <%= f.collection_select :uploader_id, User.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for uploader_id end -->
     <% if uploader_was_invalid %>
       <% article.errors.full_messages_for(:uploader).each do |message| %>

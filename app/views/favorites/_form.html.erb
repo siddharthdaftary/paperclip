@@ -1,0 +1,57 @@
+<% was_validated = favorite.errors.any? %>
+
+<%= form_with(model: favorite, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for favoriter_id start -->
+  <div class="form-group">
+    <% favoriter_class = "form-control" %>
+    <% favoriter_was_invalid = favorite.errors.include?(:favoriter) %>
+
+    <% if was_validated %>
+      <% if favoriter_was_invalid %>
+        <% favoriter_class << " is-invalid" %>
+      <% else %>
+        <% favoriter_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :favoriter_id %>
+    <!-- Input for favoriter_id start -->
+    <%= f.number_field :favoriter_id, class: favoriter_class, placeholder: "Enter favoriter" %>
+    <!-- Input for favoriter_id end -->
+    <% if favoriter_was_invalid %>
+      <% favorite.errors.full_messages_for(:favoriter).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for favoriter_id end -->
+  <!-- Label and input for article_id start -->
+  <div class="form-group">
+    <% article_class = "form-control" %>
+    <% article_was_invalid = favorite.errors.include?(:article) %>
+
+    <% if was_validated %>
+      <% if article_was_invalid %>
+        <% article_class << " is-invalid" %>
+      <% else %>
+        <% article_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :article_id %>
+    <!-- Input for article_id start -->
+    <%= f.number_field :article_id, class: article_class, placeholder: "Enter article" %>
+    <!-- Input for article_id end -->
+    <% if article_was_invalid %>
+      <% favorite.errors.full_messages_for(:article).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for article_id end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

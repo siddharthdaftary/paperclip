@@ -16,6 +16,10 @@ class Article < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :fan_readers,
+             :through => :favoriters,
+             :source => :following
+
   has_many   :readers,
              :through => :favoriters,
              :source => :followers

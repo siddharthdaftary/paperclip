@@ -16,6 +16,8 @@ RSpec.describe Article, type: :model do
 
     describe "InDirect Associations" do
 
+    it { should have_many(:readers) }
+
     end
 
     describe "Validations" do

@@ -16,6 +16,10 @@ class Article < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :readers,
+             :through => :favoriters,
+             :source => :followers
+
   # Validations
 
   # Scopes

@@ -2,10 +2,10 @@ class Favorite < ApplicationRecord
   # Direct associations
 
   belongs_to :article,
-             :counter_cache => true
+             counter_cache: true
 
   belongs_to :favoriter,
-             :class_name => "User"
+             class_name: "User"
 
   # Indirect associations
 
@@ -16,5 +16,4 @@ class Favorite < ApplicationRecord
   def to_s
     favoriter.to_s
   end
-
 end

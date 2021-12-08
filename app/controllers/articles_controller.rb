@@ -1,10 +1,11 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: %i[show edit update destroy]
 
   # GET /articles
   def index
     @q = Article.ransack(params[:q])
-    @articles = @q.result(:distinct => true).includes(:uploader, :favorites, :comments, :tag, :readers, :fan_readers, :favoriters).page(params[:page]).per(10)
+    @articles = @q.result(distinct: true).includes(:uploader, :favorites,
+                                                   :comments, :tag, :readers, :fan_readers, :favoriters).page(params[:page]).per(10)
   end
 
   # GET /articles/1
@@ -19,17 +20,16 @@ class ArticlesController < ApplicationController
   end
 
   # GET /articles/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /articles
   def create
     @article = Article.new(article_params)
 
     if @article.save
-      message = 'Article was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Article was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @article, notice: message
       end
@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   def update
     if @article.update(article_params)
-      redirect_to @article, notice: 'Article was successfully updated.'
+      redirect_to @article, notice: "Article was successfully updated."
     else
       render :edit
     end
@@ -51,22 +51,23 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     message = "Article was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to articles_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def article_params
-      params.require(:article).permit(:link, :uploader_review, :uploader_id, :publication, :estimated_reading_time, :tag_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def article_params
+    params.require(:article).permit(:link, :uploader_review, :uploader_id,
+                                    :publication, :estimated_reading_time, :tag_id)
+  end
 end

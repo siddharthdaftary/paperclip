@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ArticleResource, type: :resource do
-  describe 'creating' do
+  describe "creating" do
     let(:payload) do
       {
         data: {
-          type: 'articles',
-          attributes: { }
-        }
+          type: "articles",
+          attributes: {},
+        },
       }
     end
 
@@ -15,23 +15,24 @@ RSpec.describe ArticleResource, type: :resource do
       ArticleResource.build(payload)
     end
 
-    it 'works' do
-      expect {
-        expect(instance.save).to eq(true), instance.errors.full_messages.to_sentence
-      }.to change { Article.count }.by(1)
+    it "works" do
+      expect do
+        expect(instance.save).to eq(true),
+                                 instance.errors.full_messages.to_sentence
+      end.to change { Article.count }.by(1)
     end
   end
 
-  describe 'updating' do
+  describe "updating" do
     let!(:article) { create(:article) }
 
     let(:payload) do
       {
         data: {
           id: article.id.to_s,
-          type: 'articles',
-          attributes: { } # Todo!
-        }
+          type: "articles",
+          attributes: {}, # Todo!
+        },
       }
     end
 
@@ -39,25 +40,25 @@ RSpec.describe ArticleResource, type: :resource do
       ArticleResource.find(payload)
     end
 
-    xit 'works (add some attributes and enable this spec)' do
-      expect {
+    xit "works (add some attributes and enable this spec)" do
+      expect do
         expect(instance.update_attributes).to eq(true)
-      }.to change { article.reload.updated_at }
+      end.to change { article.reload.updated_at }
       # .and change { article.foo }.to('bar') <- example
     end
   end
 
-  describe 'destroying' do
+  describe "destroying" do
     let!(:article) { create(:article) }
 
     let(:instance) do
       ArticleResource.find(id: article.id)
     end
 
-    it 'works' do
-      expect {
+    it "works" do
+      expect do
         expect(instance.destroy).to eq(true)
-      }.to change { Article.count }.by(-1)
+      end.to change { Article.count }.by(-1)
     end
   end
 end

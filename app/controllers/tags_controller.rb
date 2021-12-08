@@ -1,10 +1,10 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :set_tag, only: %i[show edit update destroy]
 
   # GET /tags
   def index
     @q = Tag.ransack(params[:q])
-    @tags = @q.result(:distinct => true).includes(:articles).page(params[:page]).per(10)
+    @tags = @q.result(distinct: true).includes(:articles).page(params[:page]).per(10)
   end
 
   # GET /tags/1
@@ -18,15 +18,14 @@ class TagsController < ApplicationController
   end
 
   # GET /tags/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tags
   def create
     @tag = Tag.new(tag_params)
 
     if @tag.save
-      redirect_to @tag, notice: 'Tag was successfully created.'
+      redirect_to @tag, notice: "Tag was successfully created."
     else
       render :new
     end
@@ -35,7 +34,7 @@ class TagsController < ApplicationController
   # PATCH/PUT /tags/1
   def update
     if @tag.update(tag_params)
-      redirect_to @tag, notice: 'Tag was successfully updated.'
+      redirect_to @tag, notice: "Tag was successfully updated."
     else
       render :edit
     end
@@ -44,17 +43,18 @@ class TagsController < ApplicationController
   # DELETE /tags/1
   def destroy
     @tag.destroy
-    redirect_to tags_url, notice: 'Tag was successfully destroyed.'
+    redirect_to tags_url, notice: "Tag was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tag
-      @tag = Tag.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def tag_params
-      params.require(:tag).permit(:tag)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tag
+    @tag = Tag.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def tag_params
+    params.require(:tag).permit(:tag)
+  end
 end

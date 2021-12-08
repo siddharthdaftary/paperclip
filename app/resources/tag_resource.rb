@@ -6,8 +6,7 @@ class TagResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :articles
+  has_many :articles
 
   # Indirect associations
-
 end

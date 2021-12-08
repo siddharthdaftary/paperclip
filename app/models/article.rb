@@ -2,31 +2,31 @@ class Article < ApplicationRecord
   # Direct associations
 
   belongs_to :tag,
-             :required => false,
-             :counter_cache => true
+             optional: true,
+             counter_cache: true
 
   has_many   :comments,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :favorites,
-             :dependent => :destroy
+             dependent: :destroy
 
   belongs_to :uploader,
-             :class_name => "User"
+             class_name: "User"
 
   # Indirect associations
 
   has_many   :favoriters,
-             :through => :favorites,
-             :source => :favoriter
+             through: :favorites,
+             source: :favoriter
 
   has_many   :fan_readers,
-             :through => :favoriters,
-             :source => :following
+             through: :favoriters,
+             source: :following
 
   has_many   :readers,
-             :through => :favoriters,
-             :source => :followers
+             through: :favoriters,
+             source: :followers
 
   # Validations
 
@@ -35,5 +35,4 @@ class Article < ApplicationRecord
   def to_s
     link
   end
-
 end

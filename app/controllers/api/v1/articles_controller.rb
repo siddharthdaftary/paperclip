@@ -13,7 +13,7 @@ class Api::V1::ArticlesController < Api::V1::GraphitiController
     article = ArticleResource.build(params)
 
     if article.save
-      render jsonapi: article, status: 201
+      render jsonapi: article, status: :created
     else
       render jsonapi_errors: article
     end
@@ -33,7 +33,7 @@ class Api::V1::ArticlesController < Api::V1::GraphitiController
     article = ArticleResource.find(params)
 
     if article.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: article
     end

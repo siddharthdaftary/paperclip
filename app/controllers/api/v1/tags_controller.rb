@@ -13,7 +13,7 @@ class Api::V1::TagsController < Api::V1::GraphitiController
     tag = TagResource.build(params)
 
     if tag.save
-      render jsonapi: tag, status: 201
+      render jsonapi: tag, status: :created
     else
       render jsonapi_errors: tag
     end
@@ -33,7 +33,7 @@ class Api::V1::TagsController < Api::V1::GraphitiController
     tag = TagResource.find(params)
 
     if tag.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: tag
     end

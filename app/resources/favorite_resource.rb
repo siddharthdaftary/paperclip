@@ -13,5 +13,4 @@ class FavoriteResource < ApplicationResource
              resource: UserResource
 
   # Indirect associations
-
 end

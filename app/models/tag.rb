@@ -2,7 +2,7 @@ class Tag < ApplicationRecord
   # Direct associations
 
   has_many   :articles,
-             :dependent => :nullify
+             dependent: :nullify
 
   # Indirect associations
 
@@ -13,5 +13,4 @@ class Tag < ApplicationRecord
   def to_s
     tag
   end
-
 end

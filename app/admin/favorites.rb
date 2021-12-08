@@ -1,6 +1,5 @@
 ActiveAdmin.register Favorite do
-
- permit_params :favoriter_id, :article_id
+  permit_params :favoriter_id, :article_id
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -14,5 +13,4 @@ ActiveAdmin.register Favorite do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
 end

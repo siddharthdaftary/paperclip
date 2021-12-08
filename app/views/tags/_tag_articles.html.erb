@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Articles
+
+    <a data-toggle="collapse" href="#tag_articles_new_form">
+      Add article
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @tag.articles.each do |article| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to article, article %>
+        <!-- Show link end -->
+
+        <!-- Delete link start -->
+        <%= link_to article, method: :delete, data: { confirm: "Do you really want to delete this article" } do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+        <!-- Delete link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="tag_articles_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>

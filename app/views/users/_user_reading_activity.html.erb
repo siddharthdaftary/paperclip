@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Reading Activity
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @user.reading_activity.each do |article| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <a href="/articles/<%= article.id %>">
+          <%= article %>
+        </a>
+        <!-- Show link end -->
+
+      </li>
+    <% end %>
+
+  </ul>
+</div>

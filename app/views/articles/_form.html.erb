@@ -146,7 +146,7 @@
 
     <%= f.label :tag_id %>
     <!-- Input for tag_id start -->
-    <%= f.number_field :tag_id, class: tag_class, placeholder: "Enter tag" %>
+    <%= f.collection_select :tag_id, Tag.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for tag_id end -->
     <% if tag_was_invalid %>
       <% article.errors.full_messages_for(:tag).each do |message| %>

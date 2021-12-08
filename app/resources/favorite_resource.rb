@@ -7,6 +7,8 @@ class FavoriteResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :article
+
   belongs_to :favoriter,
              resource: UserResource
 

@@ -11,6 +11,9 @@ class ArticleResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :uploader,
+             resource: UserResource
+
   # Indirect associations
 
 end

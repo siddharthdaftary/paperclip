@@ -8,6 +8,9 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :articles,
+             foreign_key: :uploader_id
+
   has_many   :comments,
              foreign_key: :commenter_id
 

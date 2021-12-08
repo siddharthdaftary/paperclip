@@ -7,7 +7,7 @@
     <%= f.label :favoriter_id %>
 
     <!-- Input for favoriter_id start -->
-    <%= f.text_field :favoriter_id, class: "form-control" %>
+    <%= f.collection_select :favoriter_id, User.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for favoriter_id end -->
   </div>
   <!-- Label and input for favoriter_id end -->

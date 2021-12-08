@@ -16,7 +16,7 @@
 
     <%= f.label :favoriter_id %>
     <!-- Input for favoriter_id start -->
-    <%= f.number_field :favoriter_id, class: favoriter_class, placeholder: "Enter favoriter" %>
+    <%= f.collection_select :favoriter_id, User.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for favoriter_id end -->
     <% if favoriter_was_invalid %>
       <% favorite.errors.full_messages_for(:favoriter).each do |message| %>

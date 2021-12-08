@@ -11,6 +11,8 @@ class ArticleResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :tag
+
   has_many   :comments
 
   has_many   :favorites

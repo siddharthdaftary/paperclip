@@ -1,6 +1,9 @@
 class Article < ApplicationRecord
   # Direct associations
 
+  has_many   :comments,
+             :dependent => :destroy
+
   has_many   :favorites,
              :dependent => :destroy
 

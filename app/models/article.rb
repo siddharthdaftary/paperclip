@@ -1,6 +1,9 @@
 class Article < ApplicationRecord
   # Direct associations
 
+  has_many   :favorites,
+             :dependent => :destroy
+
   belongs_to :uploader,
              :class_name => "User"
 

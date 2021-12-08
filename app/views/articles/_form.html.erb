@@ -1,7 +1,6 @@
 <% was_validated = article.errors.any? %>
 
 <%= form_with(model: article, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for link start -->
   <div class="form-group">
     <% link_class = "form-control" %>
     <% link_was_invalid = article.errors.include?(:link) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :link %>
-    <!-- Input for link start -->
     <%= f.text_field :link, class: link_class, placeholder: "Enter link" %>
-    <!-- Input for link end -->
     <% if link_was_invalid %>
       <% article.errors.full_messages_for(:link).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for link end -->
-  <!-- Label and input for uploader_review start -->
   <div class="form-group">
     <% uploader_review_class = "form-control" %>
     <% uploader_review_was_invalid = article.errors.include?(:uploader_review) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :uploader_review %>
-    <!-- Input for uploader_review start -->
     <%= f.text_field :uploader_review, class: uploader_review_class, placeholder: "Enter uploader review" %>
-    <!-- Input for uploader_review end -->
     <% if uploader_review_was_invalid %>
       <% article.errors.full_messages_for(:uploader_review).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for uploader_review end -->
-  <!-- Label and input for uploader_id start -->
   <div class="form-group">
     <% uploader_class = "form-control" %>
     <% uploader_was_invalid = article.errors.include?(:uploader) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :uploader_id %>
-    <!-- Input for uploader_id start -->
     <%= f.collection_select :uploader_id, User.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for uploader_id end -->
     <% if uploader_was_invalid %>
       <% article.errors.full_messages_for(:uploader).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,8 +67,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for uploader_id end -->
-  <!-- Label and input for publication start -->
   <div class="form-group">
     <% publication_class = "form-control" %>
     <% publication_was_invalid = article.errors.include?(:publication) %>
@@ -93,9 +80,7 @@
     <% end %>
 
     <%= f.label :publication %>
-    <!-- Input for publication start -->
     <%= f.text_field :publication, class: publication_class, placeholder: "Enter publication" %>
-    <!-- Input for publication end -->
     <% if publication_was_invalid %>
       <% article.errors.full_messages_for(:publication).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -104,8 +89,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for publication end -->
-  <!-- Label and input for estimated_reading_time start -->
   <div class="form-group">
     <% estimated_reading_time_class = "form-control" %>
     <% estimated_reading_time_was_invalid = article.errors.include?(:estimated_reading_time) %>
@@ -119,9 +102,7 @@
     <% end %>
 
     <%= f.label :estimated_reading_time %>
-    <!-- Input for estimated_reading_time start -->
     <%= f.text_field :estimated_reading_time, class: estimated_reading_time_class, placeholder: "Enter estimated reading time" %>
-    <!-- Input for estimated_reading_time end -->
     <% if estimated_reading_time_was_invalid %>
       <% article.errors.full_messages_for(:estimated_reading_time).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -130,8 +111,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for estimated_reading_time end -->
-  <!-- Label and input for tag_id start -->
   <div class="form-group">
     <% tag_class = "form-control" %>
     <% tag_was_invalid = article.errors.include?(:tag) %>
@@ -145,9 +124,7 @@
     <% end %>
 
     <%= f.label :tag_id %>
-    <!-- Input for tag_id start -->
     <%= f.collection_select :tag_id, Tag.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for tag_id end -->
     <% if tag_was_invalid %>
       <% article.errors.full_messages_for(:tag).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -156,6 +133,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for tag_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

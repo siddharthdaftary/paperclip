@@ -6,42 +6,30 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Link</dt>
-      <!-- Display link start -->
       <dd><%= article.link %></dd>
-      <!-- Display link end -->
 
       <dt>Uploader review</dt>
-      <!-- Display uploader_review start -->
       <dd><%= article.uploader_review %></dd>
-      <!-- Display uploader_review end -->
 
       <dt>Uploader</dt>
-      <!-- Display uploader_id start -->
       <dd>
         <% if @article.uploader.present? %>
           <%= link_to article.uploader, article.uploader %>
         <% end %>
       </dd>
-      <!-- Display uploader_id end -->
 
       <dt>Publication</dt>
-      <!-- Display publication start -->
       <dd><%= article.publication %></dd>
-      <!-- Display publication end -->
 
       <dt>Estimated reading time</dt>
-      <!-- Display estimated_reading_time start -->
       <dd><%= article.estimated_reading_time %></dd>
-      <!-- Display estimated_reading_time end -->
 
       <dt>Tag</dt>
-      <!-- Display tag_id start -->
       <dd>
         <% if @article.tag.present? %>
           <%= link_to article.tag, article.tag %>
         <% end %>
       </dd>
-      <!-- Display tag_id end -->
 
     </dl>
 
@@ -50,21 +38,17 @@
         <%= link_to_show_or_back article, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link article start -->
       <div class="col">
         <%= link_to edit_article_url(article), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link article end -->
 
-      <!-- Delete link article start -->
       <div class="col">
         <%= link_to article, method: :delete, data: { confirm: "Do you really want to delete this article?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link article end -->
     </div>
   </div>
 

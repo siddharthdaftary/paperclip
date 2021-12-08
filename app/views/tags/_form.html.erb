@@ -1,7 +1,6 @@
 <% was_validated = tag.errors.any? %>
 
 <%= form_with(model: tag, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for tag start -->
   <div class="form-group">
     <% tag_class = "form-control" %>
     <% tag_was_invalid = tag.errors.include?(:tag) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :tag %>
-    <!-- Input for tag start -->
     <%= f.text_field :tag, class: tag_class, placeholder: "Enter tag" %>
-    <!-- Input for tag end -->
     <% if tag_was_invalid %>
       <% tag.errors.full_messages_for(:tag).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,6 +23,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for tag end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

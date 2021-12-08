@@ -6,27 +6,21 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Comment</dt>
-      <!-- Display comment start -->
       <dd><%= comment.comment %></dd>
-      <!-- Display comment end -->
 
       <dt>Commenter</dt>
-      <!-- Display commenter_id start -->
       <dd>
         <% if @comment.commenter.present? %>
           <%= link_to comment.commenter, comment.commenter %>
         <% end %>
       </dd>
-      <!-- Display commenter_id end -->
 
       <dt>Article</dt>
-      <!-- Display article_id start -->
       <dd>
         <% if @comment.article.present? %>
           <%= link_to comment.article, comment.article %>
         <% end %>
       </dd>
-      <!-- Display article_id end -->
 
     </dl>
 
@@ -35,21 +29,17 @@
         <%= link_to_show_or_back comment, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link comment start -->
       <div class="col">
         <%= link_to edit_comment_url(comment), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link comment end -->
 
-      <!-- Delete link comment start -->
       <div class="col">
         <%= link_to comment, method: :delete, data: { confirm: "Do you really want to delete this comment?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link comment end -->
     </div>
   </div>
 

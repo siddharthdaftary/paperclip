@@ -6,22 +6,18 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Favoriter</dt>
-      <!-- Display favoriter_id start -->
       <dd>
         <% if @favorite.favoriter.present? %>
           <%= link_to favorite.favoriter, favorite.favoriter %>
         <% end %>
       </dd>
-      <!-- Display favoriter_id end -->
 
       <dt>Article</dt>
-      <!-- Display article_id start -->
       <dd>
         <% if @favorite.article.present? %>
           <%= link_to favorite.article, favorite.article %>
         <% end %>
       </dd>
-      <!-- Display article_id end -->
 
     </dl>
 
@@ -30,7 +26,6 @@
         <%= link_to_show_or_back favorite, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link favorite start -->
       <div class="col">
         <% if current_user == @favorite.favoriter %>
           <%= link_to edit_favorite_url(favorite), class: "btn btn-block btn-sm btn-outline-secondary" do %>
@@ -38,9 +33,7 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Edit link favorite end -->
 
-      <!-- Delete link favorite start -->
       <div class="col">
         <% if current_user == @favorite.favoriter %>
           <%= link_to favorite, method: :delete, data: { confirm: "Do you really want to delete this favorite?" }, class: "btn btn-block btn-outline-secondary" do %>
@@ -48,7 +41,6 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Delete link favorite end -->
     </div>
   </div>
 

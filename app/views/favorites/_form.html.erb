@@ -1,12 +1,7 @@
 <% was_validated = favorite.errors.any? %>
 
 <%= form_with(model: favorite, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for favoriter_id start -->
-  <!-- Input for "favoriter_id" start -->
   <%= f.hidden_field :favoriter_id, value: current_user.id %>
-  <!-- Input for "favoriter_id" end -->
-  <!-- Label and input for favoriter_id end -->
-  <!-- Label and input for article_id start -->
   <div class="form-group">
     <% article_class = "form-control" %>
     <% article_was_invalid = favorite.errors.include?(:article) %>
@@ -20,9 +15,7 @@
     <% end %>
 
     <%= f.label :article_id %>
-    <!-- Input for article_id start -->
     <%= f.collection_select :article_id, Article.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for article_id end -->
     <% if article_was_invalid %>
       <% favorite.errors.full_messages_for(:article).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -31,6 +24,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for article_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

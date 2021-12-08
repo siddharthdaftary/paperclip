@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.page(params[:page]).per(10)
+    @q = Article.ransack(params[:q])
+    @articles = @q.result(:distinct => true).includes(:uploader, :favorites, :comments, :tag, :readers, :fan_readers, :favoriters).page(params[:page]).per(10)
   end
 
   # GET /articles/1

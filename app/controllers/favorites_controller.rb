@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_action :current_user_must_be_favorite_favoriter, only: [:edit, :update, :destroy] 
+
   before_action :set_favorite, only: [:show, :edit, :update, :destroy]
 
   # GET /favorites
@@ -57,6 +59,14 @@ class FavoritesController < ApplicationController
 
 
   private
+
+  def current_user_must_be_favorite_favoriter
+    set_favorite
+    unless current_user == @favorite.favoriter
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite
       @favorite = Favorite.find(params[:id])

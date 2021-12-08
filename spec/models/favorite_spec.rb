@@ -4,6 +4,8 @@ RSpec.describe Favorite, type: :model do
   
     describe "Direct Associations" do
 
+    it { should belong_to(:favoriter) }
+
     end
 
     describe "InDirect Associations" do

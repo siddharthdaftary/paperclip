@@ -1,0 +1,62 @@
+<!-- Form article start -->
+<%= form_with(model: @article, local: true) do |f| %>
+<!-- Form article end -->
+
+  <!-- Label and input for link start -->
+  <div class="form-group">
+    <%= f.label :link %>
+
+    <!-- Input for link start -->
+    <%= f.text_field :link, class: "form-control" %>
+    <!-- Input for link end -->
+  </div>
+  <!-- Label and input for link end -->
+
+  <!-- Label and input for uploader_review start -->
+  <div class="form-group">
+    <%= f.label :uploader_review %>
+
+    <!-- Input for uploader_review start -->
+    <%= f.text_field :uploader_review, class: "form-control" %>
+    <!-- Input for uploader_review end -->
+  </div>
+  <!-- Label and input for uploader_review end -->
+
+  <!-- Label and input for uploader_id start -->
+  <div class="form-group">
+    <%= f.label :uploader_id %>
+
+    <!-- Input for uploader_id start -->
+    <%= f.text_field :uploader_id, class: "form-control" %>
+    <!-- Input for uploader_id end -->
+  </div>
+  <!-- Label and input for uploader_id end -->
+
+  <!-- Label and input for publication start -->
+  <div class="form-group">
+    <%= f.label :publication %>
+
+    <!-- Input for publication start -->
+    <%= f.text_field :publication, class: "form-control" %>
+    <!-- Input for publication end -->
+  </div>
+  <!-- Label and input for publication end -->
+
+  <!-- Label and input for estimated_reading_time start -->
+  <div class="form-group">
+    <%= f.label :estimated_reading_time %>
+
+    <!-- Input for estimated_reading_time start -->
+    <%= f.text_field :estimated_reading_time, class: "form-control" %>
+    <!-- Input for estimated_reading_time end -->
+  </div>
+  <!-- Label and input for estimated_reading_time end -->
+
+  <!-- Label and input for tag_id start -->
+  <!-- Input for tag_id start -->
+  <%= f.hidden_field :tag_id, value: @tag.id %>
+  <!-- Input for tag_id end -->
+  <!-- Label and input for tag_id end -->
+
+  <%= f.submit "Create article", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

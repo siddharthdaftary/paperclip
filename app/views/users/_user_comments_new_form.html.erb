@@ -1,0 +1,32 @@
+<!-- Form comment start -->
+<%= form_with(model: @comment, local: true) do |f| %>
+<!-- Form comment end -->
+
+  <!-- Label and input for comment start -->
+  <div class="form-group">
+    <%= f.label :comment %>
+
+    <!-- Input for comment start -->
+    <%= f.text_field :comment, class: "form-control" %>
+    <!-- Input for comment end -->
+  </div>
+  <!-- Label and input for comment end -->
+
+  <!-- Label and input for commenter_id start -->
+  <!-- Input for commenter_id start -->
+  <%= f.hidden_field :commenter_id, value: @user.id %>
+  <!-- Input for commenter_id end -->
+  <!-- Label and input for commenter_id end -->
+
+  <!-- Label and input for article_id start -->
+  <div class="form-group">
+    <%= f.label :article_id %>
+
+    <!-- Input for article_id start -->
+    <%= f.text_field :article_id, class: "form-control" %>
+    <!-- Input for article_id end -->
+  </div>
+  <!-- Label and input for article_id end -->
+
+  <%= f.submit "Create comment", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

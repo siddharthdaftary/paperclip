@@ -8,6 +8,8 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
+    @comment = Comment.new
+    @favorite = Favorite.new
   end
 
   # GET /articles/new
@@ -24,7 +26,12 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
+      message = 'Article was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @article, notice: message
+      end
     else
       render :new
     end

@@ -1,0 +1,22 @@
+<!-- Form favorite start -->
+<%= form_with(model: @favorite, local: true) do |f| %>
+<!-- Form favorite end -->
+
+  <!-- Label and input for favoriter_id start -->
+  <div class="form-group">
+    <%= f.label :favoriter_id %>
+
+    <!-- Input for favoriter_id start -->
+    <%= f.text_field :favoriter_id, class: "form-control" %>
+    <!-- Input for favoriter_id end -->
+  </div>
+  <!-- Label and input for favoriter_id end -->
+
+  <!-- Label and input for article_id start -->
+  <!-- Input for article_id start -->
+  <%= f.hidden_field :article_id, value: @article.id %>
+  <!-- Input for article_id end -->
+  <!-- Label and input for article_id end -->
+
+  <%= f.submit "Create favorite", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

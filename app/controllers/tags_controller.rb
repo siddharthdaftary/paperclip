@@ -8,6 +8,7 @@ class TagsController < ApplicationController
 
   # GET /tags/1
   def show
+    @article = Article.new
   end
 
   # GET /tags/new

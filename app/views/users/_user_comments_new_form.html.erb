@@ -23,7 +23,7 @@
     <%= f.label :article_id %>
 
     <!-- Input for article_id start -->
-    <%= f.text_field :article_id, class: "form-control" %>
+    <%= f.collection_select :article_id, Article.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for article_id end -->
   </div>
   <!-- Label and input for article_id end -->

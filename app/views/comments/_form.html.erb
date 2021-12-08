@@ -68,7 +68,7 @@
 
     <%= f.label :article_id %>
     <!-- Input for article_id start -->
-    <%= f.number_field :article_id, class: article_class, placeholder: "Enter article" %>
+    <%= f.collection_select :article_id, Article.all, :id, :to_s, {}, class: "form-control" %>
     <!-- Input for article_id end -->
     <% if article_was_invalid %>
       <% comment.errors.full_messages_for(:article).each do |message| %>

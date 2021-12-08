@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
 
   # GET /favorites
   def index
-    @favorites = Favorite.all
+    @favorites = Favorite.page(params[:page]).per(10)
   end
 
   # GET /favorites/1

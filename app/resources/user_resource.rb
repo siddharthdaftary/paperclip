@@ -27,6 +27,9 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :favorite_articles,
+               resource: ArticleResource
+
   has_many :liked_articles, resource: ArticleResource do
     assign_each do |user, articles|
       articles.select do |a|

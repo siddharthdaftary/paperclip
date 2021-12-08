@@ -22,6 +22,9 @@ class ArticleResource < ApplicationResource
 
   # Indirect associations
 
+  many_to_many :favoriters,
+               resource: UserResource
+
   has_many :fan_readers, resource: UserResource do
     assign_each do |article, users|
       users.select do |u|

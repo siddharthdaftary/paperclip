@@ -4,25 +4,20 @@ class FavoritesController < ApplicationController
 
   before_action :set_favorite, only: %i[show edit update destroy]
 
-  # GET /favorites
   def index
     @q = Favorite.ransack(params[:q])
     @favorites = @q.result(distinct: true).includes(:favoriter,
                                                     :article).page(params[:page]).per(10)
   end
 
-  # GET /favorites/1
   def show; end
 
-  # GET /favorites/new
   def new
     @favorite = Favorite.new
   end
 
-  # GET /favorites/1/edit
   def edit; end
 
-  # POST /favorites
   def create
     @favorite = Favorite.new(favorite_params)
 
@@ -38,7 +33,6 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /favorites/1
   def update
     if @favorite.update(favorite_params)
       redirect_to @favorite, notice: "Favorite was successfully updated."
@@ -47,7 +41,6 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # DELETE /favorites/1
   def destroy
     @favorite.destroy
     message = "Favorite was successfully deleted."
@@ -68,12 +61,10 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_favorite
     @favorite = Favorite.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def favorite_params
     params.require(:favorite).permit(:favoriter_id, :article_id)
   end

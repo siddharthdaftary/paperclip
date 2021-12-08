@@ -1,28 +1,23 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
 
-  # GET /articles
   def index
     @q = Article.ransack(params[:q])
     @articles = @q.result(distinct: true).includes(:uploader, :favorites,
                                                    :comments, :tag, :readers, :fan_readers, :favoriters).page(params[:page]).per(10)
   end
 
-  # GET /articles/1
   def show
     @comment = Comment.new
     @favorite = Favorite.new
   end
 
-  # GET /articles/new
   def new
     @article = Article.new
   end
 
-  # GET /articles/1/edit
   def edit; end
 
-  # POST /articles
   def create
     @article = Article.new(article_params)
 
@@ -38,7 +33,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/1
   def update
     if @article.update(article_params)
       redirect_to @article, notice: "Article was successfully updated."
@@ -47,7 +41,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # DELETE /articles/1
   def destroy
     @article.destroy
     message = "Article was successfully deleted."
@@ -60,12 +53,10 @@ class ArticlesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def article_params
     params.require(:article).permit(:link, :uploader_review, :uploader_id,
                                     :publication, :estimated_reading_time, :tag_id)

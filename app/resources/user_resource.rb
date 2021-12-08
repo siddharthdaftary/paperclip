@@ -27,4 +27,18 @@ class UserResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :reading_activity, resource: ArticleResource do
+    assign_each do |user, articles|
+      articles.select do |a|
+        a.id.in?(user.reading_activity.map(&:id))
+      end
+    end
+  end
+
+
+  filter :article_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:reading_activity).where(:favorites => {:article_id => value})
+    end
+  end
 end

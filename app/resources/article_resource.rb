@@ -22,4 +22,18 @@ class ArticleResource < ApplicationResource
 
   # Indirect associations
 
+  has_many :readers, resource: UserResource do
+    assign_each do |article, users|
+      users.select do |u|
+        u.id.in?(article.readers.map(&:id))
+      end
+    end
+  end
+
+
+  filter :sender_id, :integer do
+    eq do |scope, value|
+      scope.eager_load(:readers).where(:follow_requests => {:sender_id => value})
+    end
+  end
 end

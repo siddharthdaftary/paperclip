@@ -1,6 +1,9 @@
 class Tag < ApplicationRecord
   # Direct associations
 
+  has_many   :articles,
+             :dependent => :nullify
+
   # Indirect associations
 
   # Validations

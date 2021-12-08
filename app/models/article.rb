@@ -1,6 +1,10 @@
 class Article < ApplicationRecord
   # Direct associations
 
+  belongs_to :tag,
+             :required => false,
+             :counter_cache => true
+
   has_many   :comments,
              :dependent => :destroy
 

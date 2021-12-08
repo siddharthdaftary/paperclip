@@ -3,13 +3,9 @@
 <!-- Form favorite end -->
 
   <!-- Label and input for favoriter_id start -->
-  <div class="form-group">
-    <%= f.label :favoriter_id %>
-
-    <!-- Input for favoriter_id start -->
-    <%= f.collection_select :favoriter_id, User.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for favoriter_id end -->
-  </div>
+  <!-- Input for "favoriter_id" start -->
+  <%= f.hidden_field :favoriter_id, value: current_user.id %>
+  <!-- Input for "favoriter_id" end -->
   <!-- Label and input for favoriter_id end -->
 
   <!-- Label and input for article_id start -->

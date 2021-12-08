@@ -12,12 +12,20 @@
 
       <dt>Commenter</dt>
       <!-- Display commenter_id start -->
-      <dd><%= comment.commenter_id %></dd>
+      <dd>
+        <% if @comment.commenter.present? %>
+          <%= link_to comment.commenter, comment.commenter %>
+        <% end %>
+      </dd>
       <!-- Display commenter_id end -->
 
       <dt>Article</dt>
       <!-- Display article_id start -->
-      <dd><%= comment.article_id %></dd>
+      <dd>
+        <% if @comment.article.present? %>
+          <%= link_to comment.article, comment.article %>
+        <% end %>
+      </dd>
       <!-- Display article_id end -->
 
     </dl>

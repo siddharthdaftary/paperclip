@@ -7,12 +7,20 @@
     <dl class="mb-1">
       <dt>Favoriter</dt>
       <!-- Display favoriter_id start -->
-      <dd><%= favorite.favoriter_id %></dd>
+      <dd>
+        <% if @favorite.favoriter.present? %>
+          <%= link_to favorite.favoriter, favorite.favoriter %>
+        <% end %>
+      </dd>
       <!-- Display favoriter_id end -->
 
       <dt>Article</dt>
       <!-- Display article_id start -->
-      <dd><%= favorite.article_id %></dd>
+      <dd>
+        <% if @favorite.article.present? %>
+          <%= link_to favorite.article, favorite.article %>
+        <% end %>
+      </dd>
       <!-- Display article_id end -->
 
     </dl>

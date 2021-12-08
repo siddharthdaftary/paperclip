@@ -17,7 +17,11 @@
 
       <dt>Uploader</dt>
       <!-- Display uploader_id start -->
-      <dd><%= article.uploader_id %></dd>
+      <dd>
+        <% if @article.uploader.present? %>
+          <%= link_to article.uploader, article.uploader %>
+        <% end %>
+      </dd>
       <!-- Display uploader_id end -->
 
       <dt>Publication</dt>
@@ -32,7 +36,11 @@
 
       <dt>Tag</dt>
       <!-- Display tag_id start -->
-      <dd><%= article.tag_id %></dd>
+      <dd>
+        <% if @article.tag.present? %>
+          <%= link_to article.tag, article.tag %>
+        <% end %>
+      </dd>
       <!-- Display tag_id end -->
 
     </dl>
